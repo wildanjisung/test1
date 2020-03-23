@@ -1,0 +1,17 @@
+{
+  "name": "vuejshomepage",
+  "version": "1.0.0",
+  "description": "vue js home pageand bulma css",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wildanjisung",
+  "license": "ISC",
+  "dependencies": {
+    "bulma": "^0.8.0"
+  }
+}
