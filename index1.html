@@ -1,21 +1,240 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>My first Vue app</title>
-  <script src="https://unpkg.com/vue"></script>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="node_modules/bulma-o-steps/bulma-steps.min.css">
+    <script defer src="node_modules/@fortawesome/fontawesome-free/js/all.js"></script>
+    <script src="lib/vue.js"></script>
+  </head>
+  <body>
+
   <div id="app">
-    {{ message }}
+
+		<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+		  <div class="navbar-brand">
+		    <a class="navbar-item" href="https://bulma.io">
+		      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+		    </a>
+
+		    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+		      <span aria-hidden="true"></span>
+		      <span aria-hidden="true"></span>
+		      <span aria-hidden="true"></span>
+		    </a>
+		  </div>
+
+		  <div id="navbarBasicExample" class="navbar-menu">
+		    <div class="navbar-start">
+		      <a class="navbar-item">
+		        Home
+		      </a>
+
+		      <a class="navbar-item">
+		        Documentation
+		      </a>
+
+		      <div class="navbar-item has-dropdown is-hoverable">
+		        <a class="navbar-link">
+		          More
+		        </a>
+
+		        <div class="navbar-dropdown">
+		          <a class="navbar-item">
+		            About
+		          </a>
+		          <a class="navbar-item">
+		            Jobs
+		          </a>
+		          <a class="navbar-item">
+		            Contact
+		          </a>
+		          <hr class="navbar-divider">
+		          <a class="navbar-item">
+		            Report an issue
+		          </a>
+		        </div>
+		      </div>
+		    </div>
+
+		    <div class="navbar-end">
+		      <div class="navbar-item">
+		        <div class="buttons">
+		          <a class="button is-primary">
+		            <strong>Sign up</strong>
+		          </a>
+		          <a class="button is-light">
+		            Log in
+		          </a>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</nav>
+
+	  <!-- <ul class="steps is-narrow is-medium is-centered has-content-centered">
+	    <li class="steps-segment">
+	      <a href="#" class="has-text-dark">
+	        <span class="steps-marker">
+	          <span class="icon">
+	            <i class="fa fa-shopping-cart"></i>
+	          </span>
+	        </span>
+	        <div class="steps-content">
+	          <p class="heading">Shopping Cart</p>
+	        </div>
+	      </a>
+	    </li>
+	    <li class="steps-segment">
+	      <a href="#" class="has-text-dark">
+	        <span class="steps-marker">
+	          <span class="icon">
+	            <i class="fa fa-user"></i>
+	          </span>
+	        </span>
+	        <div class="steps-content">
+	          <p class="heading">User Information</p>
+	        </div>
+	      </a>
+	    </li>
+	    <li class="steps-segment is-active has-gaps">
+	      <span class="steps-marker">
+	        <span class="icon">
+	          <i class="fa fa-usd"></i>
+	        </span>
+	      </span>
+	      <div class="steps-content">
+	        <p class="heading">Payment</p>
+	      </div>
+	    </li>
+	    <li class="steps-segment">
+	      <span class="steps-marker is-hollow">
+	        <span class="icon">
+	          <i class="fa fa-check"></i>
+	        </span>
+	      </span>
+	      <div class="steps-content">
+	        <p class="heading">Confirmation</p>
+	      </div>
+	    </li>
+	  </ul> -->
+
+	  <ul class="steps is-narrow is-medium is-centered has-content-centered is-primary">
+	    <li v-for="step in steps" v-bind:class="[step.style.isActive, step.style.hasGaps]" class="steps-segment">
+	      <a href="#" class="has-text-dark">
+	        <span class="steps-marker" v-bind:class="[step.style.isHollow]">
+	          <span class="icon">
+	            <i v-bind:class="[step.icon]"></i>
+	          </span>
+	        </span>
+	        <div class="steps-content">
+	          <p class="heading">{{step.text}}</p>
+	        </div>
+	      </a>
+	    </li>
+	  </ul>
+
+	  <button class="button" v-on:click="eBack">Back</button>
+	  <button class="button" v-on:click="eNext">Next</button>
+
   </div>
 
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        message: 'Hello Vue!'
-      }
+      	state: 0,
+      	steps: [
+      		{
+      			id: 1,
+      			text: 'Shopping Cart',
+					  icon: 'fa fa-shopping-cart',
+      			style: {
+	      			isActive: '',
+						  hasGaps: '',
+						  isHollow: '',
+      			}
+      		},
+      		{
+      			id: 2,
+      			text: 'User Information',
+					  icon: 'fa fa-user',
+      			style: {
+	      			isActive: 'is-active',
+						  hasGaps: 'has-gaps',
+						  isHollow: '',
+      			}
+      		},
+      		{
+      			id: 3,
+      			text: 'Payment',
+					  icon: 'fas fa-dollar-sign',
+      			style: {
+	      			isActive: '',
+						  hasGaps: 'has-gaps',
+						  isHollow: 'is-hollow',
+      			},
+      		},
+      		{
+      			id: 4,
+      			text: 'Confirmation',
+					  icon: 'fa fa-check',
+      			style: {
+	      			isActive: '',
+						  hasGaps: 'has-gaps',
+						  isHollow: 'is-hollow',
+      			}
+      		},
+      	],
+      	stateBefore: {
+					isActive: '',
+				  hasGaps: '',
+				  isHollow: '',
+      	},
+      	stateNow: {
+      		isActive: 'is-active',
+				  hasGaps: 'has-gaps',
+				  isHollow: '',
+      	},
+      	stateAfter: {
+					isActive: '',
+					hasGaps: 'has-gaps',
+					isHollow: 'is-hollow',
+      	},
+        message: 'Hello Vue!',
+      },
+      methods: {
+		    eBack: function () {
+		    	if (this.state > 0 ) {
+			    	this.state--
+		    	}
+		      this.eChange()
+		    },
+		    eNext: function () {
+		    	if (this.state < (this.steps.length - 1) ) {
+			    	this.state++
+			    }
+		      this.eChange()
+		    },
+		    eChange: function() {
+		    	for (let i = 0; i < this.steps.length; i++) {
+		    		if (i == this.state) {
+		    			this.steps[i].style = this.stateNow
+		    		} else if (i < this.state) {
+		    			this.steps[i].style = this.stateBefore
+		    		} else {
+		    			this.steps[i].style = this.stateAfter
+		    		}
+		    	}
+		    }
+		  },
+	    mounted() {
+		    this.eChange()
+		  }
     })
   </script>
-</body>
+
+  </body>
 </html>
