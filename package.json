@@ -7,13 +7,19 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "css-build": "node-sass --omit-source-map-url sass/mystyles.scss css/mystyles.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
   },
   "author": "wildanjisung",
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
+    "animate.css": "^3.7.2",
     "bulma": "^0.8.0",
     "bulma-o-steps": "^1.0.9"
+  },
+  "devDependencies": {
+    "node-sass": "^4.13.1"
   }
 }
