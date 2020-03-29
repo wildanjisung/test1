@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <!-- <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css"> -->
+    <link rel="stylesheet" href="lib/bulma.min.css">
+    <!-- <link rel="stylesheet" href="node_modules/bulma-o-steps/bulma-steps.min.css"> -->
+    <link rel="stylesheet" href="css/mystyles.css">
+    <!-- <link rel="stylesheet" href="node_modules/animate.css/animate.min.css"> -->
+    <link rel="stylesheet" href="lib/animate.min.css">
+    <link rel="stylesheet" href="css/bulma-tooltip.min.css">
+    <link rel="stylesheet" href="css/bulma-spacing.min.css">
+    <style>
+      .sm-center{
+        justify-content: center;
+        align-items: center;
+      }
+      /*ovveridess bulma*/
+      .notification{
+        padding: 1.25rem;
+      }
+      .notification a:not(.button):not(.dropdown-item){
+        text-decoration: none;
+      }
+      .my-10{
+        margin: 10px 0px;
+      }
+      .mx-10{
+        margin: 0px 10px;
+      }
+    </style>
+    <!-- <script defer src="node_modules/@fortawesome/fontawesome-free/js/all.js"></script> -->
+    <script defer src="lib/all.js"></script>
+    <script src="lib/vue.js"></script>
+  </head>
+  <body>
+
+  <div id="app">
+    <div class="hero is-paddingless is-info is-bold">
+      <div class="hero-body is-paddingless">
+        <div class="container">
+          <nav class="navbar is-info is-bold" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="https://bulma.io">
+                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+              </a>
+
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+              <div class="navbar-end">
+                <div class="navbar-item">
+                  <div class="buttons">
+                    <button class="button" data-tooltip="Tooltip Text">
+                      <span class="icon">
+                        <i class="fas fa-desktop"></i>
+                      </span>
+                      <span>Coba Aplikasi</span>
+                    </button>
+                    <button class="button" data-tooltip="Tooltip Text">
+                      <span class="icon">
+                        <i class="fas fa-mobile-alt"></i>
+                      </span>
+                      <span>Coba Mobile</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="section is-paddingless">
+      <div class="container is-fluid">
+
+        <div class="tile is-ancestor is-marginless" style="height: 90vh">
+          
+          <div class="tile is-parent is-vertical">
+            <!-- <article class="tile notification is-info sm-center">
+              <button class="level-item button is-info" v-on:click="eBack">
+                <i class="fas fa-angle-double-up fa-2x"></i>
+              </button>
+            </article> -->
+            <article class="tile notification is-white sm-center is-vertical">
+              <button class="button is-white has-margin-bottom-24" v-on:click="eBack">
+                <i class="fas fa-angle-double-up fa-2x"></i>
+              </button>
+              <ul class="steps is-narrow is-medium is-centered has-content-centered is-primary is-vertical ">
+                <li v-for="step in steps" v-bind:class="[step.style.isActive, step.style.hasGaps]" class="steps-segment">
+                  <a v-on:click="eStep(step.id)" class="has-text-dark">
+                    <span class="steps-marker" v-bind:class="[step.style.isHollow]">
+                      <!-- <span class="icon">
+                        <i v-bind:class="[step.icon]"></i>
+                      </span> -->
+                      <!-- <p class="heading ">{{step.id}}</p> -->
+                      <span class="steps-marker">{{step.id}}</span>
+                    </span>
+                    <div class="steps-content">
+                      <p class="heading">{{step.text}}</p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <button class="button is-white" v-on:click="eNext">
+                <i class="fas fa-angle-double-down fa-2x"></i>
+              </button>
+            </article>
+            <!-- <article class="tile notification sm-center is-info">
+              <button class="level-item button is-info" v-on:click="eNext">
+                <i class="fas fa-angle-double-down fa-2x"></i>
+              </button>
+            </article> -->
+          </div>
+
+          <div class="tile is-10">
+            <div class="tile is-parent is-vertical">
+              <!-- <article class="tile notification is-info sm-center is-paddingless">
+                <button class="level-item button is-warning my-10" v-on:click="eBack">
+                  <i class="fas fa-mobile-alt fa-2x"></i>
+                </button>
+                <button class="button is-warning mx-10" v-on:click="eBack">
+                  <i class="fas fa-desktop fa-2x"></i>
+                </button>
+              </article> -->
+              <div class="tile is-child">
+                <article class="tile is-child notification is-white">
+                  <h1 class="title is-3 has-text-centered">{{steps[state].title}}</h1>
+                  <h2 class="subtitle is-6 has-text-centered">
+                    {{steps[state].subtitle}}
+                  </h2>
+                  <!-- <h2 class="has-text-grey subtitle has-text-left">
+                    Sekertaris Divisi Sekertariat Mengumpulk
+                    <div class="column">
+                      <button class="button is-info has-margin-bottom-12" data-tooltip="Tooltip Text">
+                        <span class="icon">
+                          <i class="fas fa-user"></i>an Surat Masuk ke SIPAS dan mendistribusikan ke Kepala Direktur Keuangan
+                  </h2> -->
+                  <figure id="imageBanner" class="image is-720x120">
+                    <img :src="steps[state].imageSrc">
+                    <!-- <div class="is-overlay" style="top: auto; left: 15px; bottom: 15px; right: 15px">
+                      <div class="columns is-vcentered">
+                        <div class="column is-10">
+                          <p class="subtitle is-marginless" >
+                            Sekertaris Divisi Sekertariat Mengumpulkan Surat Masuk ke SIPAS dan mendistribusikan ke Kepala Direktur Keuangan  
+                          </p>
+                        </div>
+                        <div class="column">
+                          <button class="button is-info has-margin-bottom-12" data-tooltip="Tooltip Text">
+                            <span class="icon">
+                              <i class="fas fa-user"></i>
+                            </span>
+                            <span>Resepsionis</span>
+                          </button>
+                          <button class="button is-info" data-tooltip="Tooltip Text">
+                            <span class="icon">
+                              <i class="fas fa-user"></i>
+                            </span>
+                            <span>Resepsionis</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div> -->
+                  </figure>
+                </article>
+              </div>
+              <div class="tile notification is-white sm-center">
+                <div class="tile">
+                  <div class="tile is-child is-8">
+                    <p class="subtitle is-6 is-marginless" >
+                      {{steps[state].desc}} 
+                    </p>
+                  </div>
+                  <div class="tile sm-center">
+                    <div class="buttons">
+
+                      <button v-for="user in steps[state].users" class="button is-info is-outlined has-tooltip-arrow has-tooltip-multiline" data-tooltip="Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit ">
+                        <span class="icon">
+                          <i class="fas fa-user"></i>
+                        </span>
+                        <span>{{user.text}}</span>
+                      </button>
+                      <!-- <button class="button is-outlined is-info has-tooltip-arrow has-tooltip-multiline" data-tooltip="Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit ">
+                        <span class="icon">
+                          <i class="fas fa-user"></i>
+                        </span>
+                        <span>Tata Usaha</span>
+                      </button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- <div class="tile is-parent is-vertical">
+            <article class="tile notification is-info sm-center">
+              <div class="content has-text-centered">
+                <div class="content">
+                </div>
+              </div>
+            </article>
+            <article class="tile notification is-danger is-vertical sm-center is-paddingless">
+            </article>
+            <article class="tile is-child notification is-info">
+              <div class="content has-text-centered">
+                <div class="content">
+                </div>
+              </div>
+            </article>
+          </div> -->
+        
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+      	state: 0,
+        animatedEl: '',
+      	steps: [
+      		{
+      			id: 1,
+      			text: 'Surat 1',
+					  icon: 'fa fa-shopping-cart',
+            imageSrc: 'images/gov_step_1.jpg',
+            title: 'Pencatatan Dan Distribusi Surat Masuk',
+            subtitle: 'Contoh bisnis proses pencatatan dan distribusi mulai dari surat masuk diterima oleh resepsionis sampai didisposisikan oleh pemimpin ke staf ',
+            desc: 'Sekertaris Divisi Sekertariat Mengumpulkan Surat Masuk ke SIPAS dan mendistribusikan ke Kepala Direktur Keuangan',
+            users: [
+              {
+                text: 'Resepsionis'
+              }
+            ],
+      			style: {
+	      			isActive: '',
+						  hasGaps: '',
+						  isHollow: '',
+      			}
+      		},
+      		{
+      			id: 2,
+      			text: 'Surat 2',
+					  icon: 'fa fa-user',
+            imageSrc: 'images/gov_step_2.jpg',
+            title: 'Pencatatan Dan Distribusi Surat Masuk - (2)',
+            subtitle: 'Contoh bisnis proses pencatatan dan distribusi mulai dari surat masuk diterima oleh resepsionis sampai didisposisikan oleh pemimpin ke staf-(2)',
+            desc: 'Sekertaris Divisi Sekertariat Mengumpulkan Surat Masuk ke SIPAS dan mendistribusikan ke Kepala Direktur Keuangan-(2)',
+      			users: [
+              {
+                text: 'Resepsionis'
+              },
+              {
+                text: 'Tata usaha'
+              }
+            ],
+            style: {
+	      			isActive: 'is-active',
+						  hasGaps: 'has-gaps',
+						  isHollow: '',
+      			}
+      		},
+      		{
+      			id: 3,
+      			text: 'Surat 3',
+					  icon: 'fas fa-dollar-sign',
+            imageSrc: 'images/gov_step_3.jpg',
+            title: 'Pencatatan Dan Distribusi Surat Masuk - (3)',
+            subtitle: 'Contoh bisnis proses pencatatan dan distribusi mulai dari surat masuk diterima oleh resepsionis sampai didisposisikan oleh pemimpin ke staf-(3)',
+            desc: 'Sekertaris Divisi Sekertariat Mengumpulkan Surat Masuk ke SIPAS dan mendistribusikan ke Kepala Direktur Keuangan-(3)',
+      			users: [
+              {
+                text: 'Resepsionis'
+              }
+            ],
+            style: {
+	      			isActive: '',
+						  hasGaps: 'has-gaps',
+						  isHollow: 'is-hollow',
+      			},
+      		},
+      		{
+      			id: 4,
+      			text: 'Surat 4',
+					  icon: 'fa fa-check',
+            imageSrc: 'images/gov_step_4.jpg',
+            title: 'Pencatatan Dan Distribusi Surat Masuk - (4)',
+            subtitle: 'Contoh bisnis proses pencatatan dan distribusi mulai dari surat masuk diterima oleh resepsionis sampai didisposisikan oleh pemimpin ke staf-(4)',
+            desc: 'Sekertaris Divisi Sekertariat Mengumpulkan Surat Masuk ke SIPAS dan mendistribusikan ke Kepala Direktur Keuangan-(4)',
+      			users: [
+              {
+                text: 'Resepsionis'
+              }
+            ],
+            style: {
+	      			isActive: '',
+						  hasGaps: 'has-gaps',
+						  isHollow: 'is-hollow',
+      			}
+      		},
+      	],
+      	stateBefore: {
+					isActive: '',
+				  hasGaps: '',
+				  isHollow: '',
+      	},
+      	stateNow: {
+      		isActive: 'is-active',
+				  hasGaps: 'has-gaps',
+				  isHollow: '',
+      	},
+      	stateAfter: {
+					isActive: '',
+					hasGaps: 'has-gaps',
+					isHollow: 'is-hollow',
+      	},
+        message: 'Hello Vue!',
+      },
+      methods: {
+		    eBack: function () {
+		    	if (this.state > 0 ) {
+			    	this.state--
+  		      this.eChange()
+            this.animateCSS('#imageBanner', 'fadeIn')
+		    	}
+		    },
+		    eNext: function () {
+		    	if (this.state < (this.steps.length - 1) ) {
+			    	this.state++
+  		      this.eChange()
+            this.animateCSS('#imageBanner', 'fadeIn')
+			    }
+		    },
+        eStep: function (id) {
+          this.state = id - 1
+          this.eChange()
+          this.animateCSS('#imageBanner', 'fadeIn')
+        },
+		    eChange: function() {
+		    	for (let i = 0; i < this.steps.length; i++) {
+		    		if (i == this.state) {
+		    			this.steps[i].style = this.stateNow
+		    		} else if (i < this.state) {
+		    			this.steps[i].style = this.stateBefore
+		    		} else {
+		    			this.steps[i].style = this.stateAfter
+		    		}
+		    	}
+		    },
+        animateCSS: function(element, animationName, callback) {
+          const node = document.querySelector(element)
+          node.classList.add('animated', animationName)
+
+          function handleAnimationEnd() {
+            node.classList.remove('animated', animationName)
+            node.removeEventListener('animationend', handleAnimationEnd)
+
+            if (typeof callback === 'function') callback()
+          }
+
+          node.addEventListener('animationend', handleAnimationEnd)
+        }
+		  },
+	    mounted() {
+		    this.eChange()
+		  }
+    })
+  </script>
+
+  </body>
+</html>

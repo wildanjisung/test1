@@ -7,8 +7,8 @@
 @import "../node_modules/bulma-o-steps/styles/utilities/_all.sass";
 
 $steps-default-color: $grey-lighter !default;
-$steps-completed-color: $primary !default;
-$steps-active-color: $primary !default;
+$steps-completed-color: $info !default;
+$steps-active-color: $info !default;
 $steps-horizontal-min-width: 10em !default;
 $steps-vertical-min-height: 4em !default;
 $steps-marker-size: 2 !default;

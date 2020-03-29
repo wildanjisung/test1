@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <!-- <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css"> -->
+    <link rel="stylesheet" href="lib/bulma.min.css">
+    <!-- <link rel="stylesheet" href="node_modules/bulma-o-steps/bulma-steps.min.css"> -->
+    <link rel="stylesheet" href="css/mystyles.css">
+    <!-- <link rel="stylesheet" href="node_modules/animate.css/animate.min.css"> -->
+    <link rel="stylesheet" href="lib/animate.min.css">
+    <style>
+      .myHeight{
+        min-height: 100vh;
+      }
+      .myDirection{
+        flex-direction: column;
+      }
+      .myStyle{
+        /*align-items: flex-end;*/
+        justify-content: space-between;
+      }
+      .myBox {
+        display: flex;
+      }
+      .myBox > .minBox {
+        min-width: 100px;
+        min-height: 100px;
+      }
+      .bgColorRed{
+        background-color: red;
+      }
+      .bgColorBlue{
+        background-color: blue;
+      }
+      .myCenter{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+    <!-- <script defer src="node_modules/@fortawesome/fontawesome-free/js/all.js"></script> -->
+    <script defer src="lib/all.js"></script>
+    <script src="lib/vue.js"></script>
+  </head>
+  <body>
+
+  <div id="app">
+
+    <div class="myBox myHeight myStyle" style="background-color: magenta;">       
+      <!-- <div class="minBox" style="background-color: red; flex: 1"></div>
+      <div class="minBox" style="background-color: green; flex: 5">
+        <div class="minBox" style="background-color: blue; flex: 1"></div>
+        <div class="minBox" style="background-color: blue; flex: 1"></div>
+      </div>
+      <div class="minBox" style="background-color: blue; flex: 1"></div> -->
+
+      <div class="myBox myStyle" style="background-color: yellow; flex: 1">
+        <div class="myBox myDirection myCenter" style="background-color: pink; flex: 1; justify-content: space-around;">
+          <div class="bgColorBlue myCenter">
+            <i class="fas fa-angle-double-up fa-2x"></i>
+          </div>
+          <div class="" style="background-color: red">
+            <ul class="steps is-vertical is-short">
+              <li class="steps-segment">
+                <span href="#" class="steps-marker"></span>
+              </li>
+              <li class="steps-segment is-active">
+                <span class="steps-marker"></span>
+              </li>
+              <li class="steps-segment">
+                <span class="steps-marker"></span>
+              </li>
+            </ul>
+          </div>
+          <div class="bgColorRed myCenter">
+            <i class="fas fa-angle-double-down fa-2x"></i>
+          </div>
+        </div>
+        <div class="myBox" style="background-color: yellow; flex: 6; justify-content: center; align-items: center;">
+          <div style="flex: 1">
+            <h1 class="title has-text-centered">Pencatatan Dan Distribusi Surat Masuk</h1>
+            <h2 class="subtitle has-text-centered">
+              Contoh bisnis proses pencatatan dan distribusi mulai dari surat masuk diterima oleh resepsionis sampai didisposisikan oleh pemimpin ke staf
+            </h2>
+            <figure id="imageBanner" class="image is-720x120">
+              <img :src="stateImage">
+            </figure>
+            <div class="myCenter">
+              <button class="button is-rounded">
+                <span class="icon">
+                  <i class="fas fa-user"></i>
+                </span>
+                <span>Resepsionis</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="myBox myDirection" style="background-color: pink; flex: 1; justify-content: center; align-items: center">
+<div class="columns">
+  <div class="column">
+    First column
+  </div>
+  <div class="column">
+    Second column
+  </div>
+  <div class="column">
+    Third column
+  </div>
+  <div class="column">
+    Fourth column
+  </div>
+</div>
+        </div>
+      </div>
+
+      <!-- <div class="myBox myDirection myStyle" style="background-color: yellow; flex-grow: 1">
+        <div class="minBox" style="background-color: red"></div>
+        <div class="myBox" style="background-color: pink">
+          <div class="minBox" style="background-color: red"></div>
+          <div class="minBox" style="background-color: green"></div>
+        </div>
+        <div class="myBox" style="background-color: pink">
+          <div class="minBox" style="background-color: red"></div>
+          <div class="minBox" style="background-color: green"></div>
+        </div>
+      </div> -->
+
+    </div>
+
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+      	state: 0,
+        stateImage: '',
+        animatedEl: '',
+      	steps: [
+      		{
+      			id: 1,
+      			text: 'Shopping Cart',
+					  icon: 'fa fa-shopping-cart',
+            imageSrc: 'https://via.placeholder.com/720x240.png?text=1',
+      			style: {
+	      			isActive: '',
+						  hasGaps: '',
+						  isHollow: '',
+      			}
+      		},
+      		{
+      			id: 2,
+      			text: 'User Information',
+					  icon: 'fa fa-user',
+            imageSrc: 'https://via.placeholder.com/720x240.png?text=2',
+      			style: {
+	      			isActive: 'is-active',
+						  hasGaps: 'has-gaps',
+						  isHollow: '',
+      			}
+      		},
+      		{
+      			id: 3,
+      			text: 'Payment',
+					  icon: 'fas fa-dollar-sign',
+            imageSrc: 'https://via.placeholder.com/720x240.png?text=3',
+      			style: {
+	      			isActive: '',
+						  hasGaps: 'has-gaps',
+						  isHollow: 'is-hollow',
+      			},
+      		},
+      		{
+      			id: 4,
+      			text: 'Confirmation',
+					  icon: 'fa fa-check',
+            imageSrc: 'https://via.placeholder.com/720x240.png?text=4',
+      			style: {
+	      			isActive: '',
+						  hasGaps: 'has-gaps',
+						  isHollow: 'is-hollow',
+      			}
+      		},
+      	],
+      	stateBefore: {
+					isActive: '',
+				  hasGaps: '',
+				  isHollow: '',
+      	},
+      	stateNow: {
+      		isActive: 'is-active',
+				  hasGaps: 'has-gaps',
+				  isHollow: '',
+      	},
+      	stateAfter: {
+					isActive: '',
+					hasGaps: 'has-gaps',
+					isHollow: 'is-hollow',
+      	},
+        styleObject: {
+          'background-image': "url('https://via.placeholder.com/1239x300/FFFF00/000000?Text=WebsiteBuilders.com')",
+          'background-repeat': 'no-repeat',
+          'background-size': 'cover',
+        },
+        message: 'Hello Vue!',
+      },
+      computed: {
+        test: function () {
+          if (this.state == 1) {
+            return this.styleObject['background-image']
+          } else {
+
+          }
+          // /FFFF00/000000
+        }
+      },
+      watch: {
+        state: function (val) {
+          console.log('watch ...')
+          this.styleObject['background-image'] = "url('https://via.placeholder.com/150/0000FF/808080 ?Text=Digital.com')"
+        },
+      },
+      methods: {
+		    eBack: function () {
+		    	if (this.state > 0 ) {
+			    	this.state--
+  		      this.eChange()
+            this.animateCSS('#imageBanner', 'fadeIn')
+		    	}
+		    },
+		    eNext: function () {
+		    	if (this.state < (this.steps.length - 1) ) {
+			    	this.state++
+  		      this.eChange()
+            this.animateCSS('#imageBanner', 'fadeIn')
+			    }
+		    },
+		    eChange: function() {
+		    	for (let i = 0; i < this.steps.length; i++) {
+		    		if (i == this.state) {
+		    			this.steps[i].style = this.stateNow
+		    		} else if (i < this.state) {
+		    			this.steps[i].style = this.stateBefore
+		    		} else {
+		    			this.steps[i].style = this.stateAfter
+		    		}
+
+            this.stateImage = this.steps[this.state].imageSrc
+		    	}
+		    },
+        animateCSS: function(element, animationName, callback) {
+          const node = document.querySelector(element)
+          node.classList.add('animated', animationName)
+
+          function handleAnimationEnd() {
+            node.classList.remove('animated', animationName)
+            node.removeEventListener('animationend', handleAnimationEnd)
+
+            if (typeof callback === 'function') callback()
+          }
+
+          node.addEventListener('animationend', handleAnimationEnd)
+        }
+		  },
+	    mounted() {
+		    this.eChange()
+		  }
+    })
+  </script>
+
+  </body>
+</html>
