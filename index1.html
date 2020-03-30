@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/mystyles.css">
     <!-- <link rel="stylesheet" href="node_modules/animate.css/animate.min.css"> -->
     <link rel="stylesheet" href="lib/animate.min.css">
+    <link rel="stylesheet" href="css/bulma-tooltip.min.css">
+    <link rel="stylesheet" href="css/bulma-spacing.min.css">
     <style>
       .card {
         background-image: url(https://via.placeholder.com/600x100.png?text=ADA);
@@ -25,68 +27,71 @@
 
   <div id="app">
 
-    <nav class="navbar is-primary is-bold" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-        </a>
-
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div id="navbarBasicExample" class="navbar-menu">
-        <!-- <div class="navbar-start">
-          <a class="navbar-item">
-            Home
-          </a>
-
-          <a class="navbar-item">
-            Documentation
-          </a>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              More
+    <div class="hero is-paddingless is-info is-bold">
+      <div class="hero-body is-paddingless"> 
+        <nav class="navbar is-info is-bold" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+              <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
             </a>
 
-            <div class="navbar-dropdown">
-              <a class="navbar-item">
-                About
-              </a>
-              <a class="navbar-item">
-                Jobs
-              </a>
-              <a class="navbar-item">
-                Contact
-              </a>
-              <hr class="navbar-divider">
-              <a class="navbar-item">
-                Report an issue
-              </a>
-            </div>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
           </div>
-        </div> -->
 
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button">
-                <!-- <strong>Sign up</strong> -->
-                Coba Aplikasi
+          <div id="navbarBasicExample" class="navbar-menu">
+            <!-- <div class="navbar-start">
+              <a class="navbar-item">
+                Home
               </a>
-              <a class="button">
-                Coba Mobile
+
+              <a class="navbar-item">
+                Documentation
               </a>
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  More
+                </a>
+
+                <div class="navbar-dropdown">
+                  <a class="navbar-item">
+                    About
+                  </a>
+                  <a class="navbar-item">
+                    Jobs
+                  </a>
+                  <a class="navbar-item">
+                    Contact
+                  </a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item">
+                    Report an issue
+                  </a>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a class="button">
+                    <!-- <strong>Sign up</strong> -->
+                    Coba Aplikasi
+                  </a>
+                  <a class="button">
+                    Coba Mobile
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </nav>
       </div>
-    </nav>
-
+    </div>
     <!-- <section class="hero is-primary is-bold">
       <div class="hero-body">
         <div class="container">
@@ -103,16 +108,16 @@
     <section class="section">
       <div class="container is-fluid">
 
-        <h1 class="title has-text-centered">Pencatatan Dan Distribusi Surat Masuk</h1>
+        <h1 class="title has-text-centered">{{steps[state].title}}</h1>
         <h2 class="subtitle has-text-centered">
-          Contoh bisnis proses pencatatan dan distribusi mulai dari surat masuk diterima oleh resepsionis sampai didisposisikan oleh pemimpin ke staf
+          {{steps[state].subtitle}}
         </h2>
     
         <!-- <div class="container is-fluid"> -->
           <div class="column is-full">
             <ul class="steps is-narrow is-medium is-centered has-content-centered is-primary">
               <li v-for="step in steps" v-bind:class="[step.style.isActive, step.style.hasGaps]" class="steps-segment">
-                <a href="#" class="has-text-dark">
+                <a v-on:click="eStep(step.id)" class="has-text-dark">
                   <span class="steps-marker" v-bind:class="[step.style.isHollow]">
                     <!-- <span class="icon">
                       <i v-bind:class="[step.icon]"></i>
@@ -132,7 +137,7 @@
         <!-- </div> -->
 
         <p class="has-text-grey has-text-left">
-          Sekertaris Divisi Sekertariat Mengumpulkan Surat Masuk ke SIPAS dan mendistribusikan ke Kepala Direktur Keuangan
+          {{steps[state].desc}}
         </p>
 
         <div class="box">
@@ -160,8 +165,23 @@
               <!-- <p class="level-item"><a>Demo dengan User</a></p> -->
               <!-- <p class="level-item"><a>Drafts</a></p> -->
               <!-- <p class="level-item"><a>Deleted</a></p> -->
-              <p class="level-item"><a class="button is-primary">Coba Akun Resepsionis</a></p>
-              <p class="level-item"><a class="button is-primary">Coba Akun Kepala Dinas</a></p>
+              <!-- <p class="level-item"><a class="button is-info">Coba Akun Resepsionis</a></p> -->
+              <!-- <p class="level-item"><a class="button is-info">Coba Akun Kepala Dinas</a></p> -->
+              <div class="buttons">
+
+                <button v-for="user in steps[state].users" class="button is-info has-tooltip-arrow has-tooltip-multiline" data-tooltip="Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit ">
+                  <span class="icon">
+                    <i class="fas fa-user"></i>
+                  </span>
+                  <span>{{user.text}}</span>
+                </button>
+                <!-- <button class="button is-outlined is-info has-tooltip-arrow has-tooltip-multiline" data-tooltip="Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit Deskripsi Unit ">
+                  <span class="icon">
+                    <i class="fas fa-user"></i>
+                  </span>
+                  <span>Tata Usaha</span>
+                </button> -->
+              </div>
             </div>
           </nav>
         </div>
@@ -215,51 +235,86 @@
         stateImage: '',
         animatedEl: '',
       	steps: [
-      		{
-      			id: 1,
-      			text: 'Shopping Cart',
-					  icon: 'fa fa-shopping-cart',
-            imageSrc: 'https://via.placeholder.com/720x240.png?text=1',
-      			style: {
-	      			isActive: '',
-						  hasGaps: '',
-						  isHollow: '',
-      			}
-      		},
-      		{
-      			id: 2,
-      			text: 'User Information',
-					  icon: 'fa fa-user',
-            imageSrc: 'https://via.placeholder.com/720x240.png?text=2',
-      			style: {
-	      			isActive: 'is-active',
-						  hasGaps: 'has-gaps',
-						  isHollow: '',
-      			}
-      		},
-      		{
-      			id: 3,
-      			text: 'Payment',
-					  icon: 'fas fa-dollar-sign',
-            imageSrc: 'https://via.placeholder.com/720x240.png?text=3',
-      			style: {
-	      			isActive: '',
-						  hasGaps: 'has-gaps',
-						  isHollow: 'is-hollow',
-      			},
-      		},
-      		{
-      			id: 4,
-      			text: 'Confirmation',
-					  icon: 'fa fa-check',
-            imageSrc: 'https://via.placeholder.com/720x240.png?text=4',
-      			style: {
-	      			isActive: '',
-						  hasGaps: 'has-gaps',
-						  isHollow: 'is-hollow',
-      			}
-      		},
-      	],
+          {
+            id: 1,
+            text: 'Surat 1',
+            icon: 'fa fa-shopping-cart',
+            imageSrc: 'images/gov_step_1.jpg',
+            title: 'Pencatatan Dan Distribusi Surat Masuk',
+            subtitle: 'Contoh bisnis proses pencatatan dan distribusi mulai dari surat masuk diterima oleh resepsionis sampai didisposisikan oleh pemimpin ke staf ',
+            desc: 'Sekertaris Divisi Sekertariat Mengumpulkan Surat Masuk ke SIPAS dan mendistribusikan ke Kepala Direktur Keuangan',
+            users: [
+              {
+                text: 'Resepsionis'
+              }
+            ],
+            style: {
+              isActive: '',
+              hasGaps: '',
+              isHollow: '',
+            }
+          },
+          {
+            id: 2,
+            text: 'Surat 2',
+            icon: 'fa fa-user',
+            imageSrc: 'images/gov_step_2.jpg',
+            title: 'Pencatatan Dan Distribusi Surat Masuk - (2)',
+            subtitle: 'Contoh bisnis proses pencatatan dan distribusi mulai dari surat masuk diterima oleh resepsionis sampai didisposisikan oleh pemimpin ke staf-(2)',
+            desc: 'Sekertaris Divisi Sekertariat Mengumpulkan Surat Masuk ke SIPAS dan mendistribusikan ke Kepala Direktur Keuangan-(2)',
+            users: [
+              {
+                text: 'Resepsionis'
+              },
+              {
+                text: 'Tata usaha'
+              }
+            ],
+            style: {
+              isActive: 'is-active',
+              hasGaps: 'has-gaps',
+              isHollow: '',
+            }
+          },
+          {
+            id: 3,
+            text: 'Surat 3',
+            icon: 'fas fa-dollar-sign',
+            imageSrc: 'images/gov_step_3.jpg',
+            title: 'Pencatatan Dan Distribusi Surat Masuk - (3)',
+            subtitle: 'Contoh bisnis proses pencatatan dan distribusi mulai dari surat masuk diterima oleh resepsionis sampai didisposisikan oleh pemimpin ke staf-(3)',
+            desc: 'Sekertaris Divisi Sekertariat Mengumpulkan Surat Masuk ke SIPAS dan mendistribusikan ke Kepala Direktur Keuangan-(3)',
+            users: [
+              {
+                text: 'Resepsionis'
+              }
+            ],
+            style: {
+              isActive: '',
+              hasGaps: 'has-gaps',
+              isHollow: 'is-hollow',
+            },
+          },
+          {
+            id: 4,
+            text: 'Surat 4',
+            icon: 'fa fa-check',
+            imageSrc: 'images/gov_step_4.jpg',
+            title: 'Pencatatan Dan Distribusi Surat Masuk - (4)',
+            subtitle: 'Contoh bisnis proses pencatatan dan distribusi mulai dari surat masuk diterima oleh resepsionis sampai didisposisikan oleh pemimpin ke staf-(4)',
+            desc: 'Sekertaris Divisi Sekertariat Mengumpulkan Surat Masuk ke SIPAS dan mendistribusikan ke Kepala Direktur Keuangan-(4)',
+            users: [
+              {
+                text: 'Resepsionis'
+              }
+            ],
+            style: {
+              isActive: '',
+              hasGaps: 'has-gaps',
+              isHollow: 'is-hollow',
+            }
+          },
+        ],
       	stateBefore: {
 					isActive: '',
 				  hasGaps: '',
@@ -292,6 +347,11 @@
             this.animateCSS('#imageBanner', 'fadeIn')
 			    }
 		    },
+        eStep: function (id) {
+          this.state = id - 1
+          this.eChange()
+          this.animateCSS('#imageBanner', 'fadeIn')
+        },
 		    eChange: function() {
 		    	for (let i = 0; i < this.steps.length; i++) {
 		    		if (i == this.state) {
